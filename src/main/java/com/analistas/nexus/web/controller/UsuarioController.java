@@ -1,10 +1,10 @@
 package com.analistas.nexus.web.controller;
 
-
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -30,17 +30,20 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/usuarios")
 @SessionAttributes("usuario")
-@Secured({"ROLE_ADMIN", "ROLE_USER"})
+@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 public class UsuarioController {
 
     @Autowired
-     IUsuarioService usuarioService;
+    IUsuarioService usuarioService;
 
     @Autowired
     IPermisoService permisoService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @GetMapping("/listado")
     public String listado(Model model) {
@@ -66,18 +69,32 @@ public class UsuarioController {
     public String guardar(@Valid Usuario usuario, BindingResult result, @RequestParam("rol") Long idRol,
             Model model, RedirectAttributes msgFlash, SessionStatus status) {
 
-        // Verificar si hay errores
+        // Verificar si hay errores de validación
         if (result.hasErrors()) {
             model.addAttribute("danger", "Corrija los Errores...");
             return "usuarios/form";
         }
 
-        usuario.setPermiso(permisoService.buscarPorId(idRol));
-        
-        //if(usuario.getId() == 0)
+        // Verificar si el objeto Usuario es nuevo (sin id) o existente (con id)
+        if (usuario.getId() == null) {
             usuario.setClave(passwordEncoder.encode(usuario.getClave()));
-        
-            usuarioService.guardar(usuario);
+        }
+
+        usuario.setPermiso(permisoService.buscarPorId(idRol));
+        usuarioService.guardar(usuario);
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(usuario.getEmail());
+        mailMessage.setSubject("Usuario Generado - Nexus Informatica tu conección con la tecnologia");
+        String messageText = "Al Señor " + usuario.getNombre() + "\n\n"
+                + "Nos comunicamos desde la Admisnitración de Nexus Informatica, a fin de informarle que se ha generado un usuario en el sistema de Admisión y Cupo del Servicio Penitenciario de la Provincia del Chaco. Para ingresar al sistema, siga estos pasos:\n\n"
+                + "1. Ingrese al siguiente enlace que lo llevará al Sistema de Admisión y Cupo: [nexusInformatica.com.ar/login]\n"
+                + "2. En el campo de usuario, ingrese su Nombre y Apellido, todo en minúsculas y sin espacios.\n"
+                + "3. La contraseña por defecto es su Número de Documento sin puntos ni espacios.\n\n"
+                + "Saludos cordiales,\n"
+                + "Nexus Informatica.";
+        mailMessage.setText(messageText);
+        mailSender.send(mailMessage);
 
         msgFlash.addFlashAttribute("success", "Usuario Registrado Correctamente.");
         status.setComplete();

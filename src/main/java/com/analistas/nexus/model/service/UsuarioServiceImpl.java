@@ -12,17 +12,15 @@ import com.analistas.nexus.model.repository.UsuarioRepository;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
-    
+
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    
     @Override
     @Transactional(readOnly = true)
     public List<Usuario> buscarPor(String criterio) {
         return usuarioRepository.buscarPor(criterio);
     }
-
 
     @Override
     @Transactional(readOnly = true)
@@ -30,17 +28,28 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return usuarioRepository.findById(id).orElse(null);
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public List<Usuario> buscarTodos() {
         return usuarioRepository.buscarSoloHabilitados();
-    }
 
+    }
 
     @Override
     @Transactional
     public void guardar(Usuario usuario) {
-      usuarioRepository.save(usuario);
+        usuarioRepository.save(usuario);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findByNombreOrEmail(String nombre, String email) {
+        return usuarioRepository.findByNombreOrEmail(nombre, email);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario buscarPorNombre(String nombreUsuario) {
+        return usuarioRepository.findByNombre(nombreUsuario);
     }
 }
