@@ -1,8 +1,6 @@
 package com.analistas.nexus.model.entities;
 
 
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
