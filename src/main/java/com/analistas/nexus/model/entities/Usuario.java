@@ -16,6 +16,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario  {
@@ -25,8 +26,7 @@ public class Usuario  {
     private Long id;
 
     @Size(max = 30, min = 5)
-    //@NotEmpty(message = "El nombre de ususario es requerido...")
-    @Pattern(regexp = "[a-zA-ZÀ-ÖØ-öø-ÿ]+\\.?(( |\\-)[a-zA-ZÀ-ÖØ-öø-ÿ]+\\.?)*", message="Escribe nuevamente tu nombre")
+    //@NotEmpty(message = "El nombre de ususario es requerido...")   
     private String nombre;
 
     
@@ -43,6 +43,10 @@ public class Usuario  {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_permiso", referencedColumnName = "id")
     private Permiso permiso;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_sucursal", referencedColumnName = "id")
+    private Sucursal sucursalAsignada;
 
     public Usuario() {
         activo = true;
@@ -105,11 +109,19 @@ public class Usuario  {
         this.email = email;
     }
 
+     
+
+    public Sucursal getSucursalAsignada() {
+        return sucursalAsignada;
+    }
+
+    public void setSucursalAsignada(Sucursal sucursalAsignada) {
+        this.sucursalAsignada = sucursalAsignada;
+    }
+
     @Override
     public String toString() {
         return nombre +  permiso.getNombre();
     }
-
-   
     
 }

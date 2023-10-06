@@ -8,13 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Booststrap 5.0.2 CSS CDN-->
+    <!-- Bootstrap 5.0.2 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <!-- Bootstrap iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
     <!--JQuery ui css-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
-
 
     <!--Box Icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -83,7 +85,7 @@
 
                         <!-- opciones de usuario -->
                         <ul class="dropdown-menu dropdown-menu-end ms-4" aria-labelledby="ddlink"
-                            style="background-color: rgb(68, 236, 124); color: azure;">
+                            style="background-color: rgb(230, 235, 232); color: rgb(31, 32, 32);">
                             <li>
                                 <a href="#" class="dropdown-item">
                                     <i class="bi bi-person-badge"></i>
@@ -121,22 +123,23 @@
     </nav>
 
 
-    <!-- mensajes-->
     <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success != null}">
-        <i class='bx bx-info-circle bx-tada'></i>
+        <i class="bx bx-info-circle bx-tada"></i>
         <span th:text="${success}"></span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="cerrar"></button>
     </div>
     <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${warning != null}">
-        <i class='bx bx-message-rounded-dots bx-tada'></i>
+        <i class="bx bx-message-rounded-dots bx-tada"></i>
         <span th:text="${warning}"></span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="cerrar"></button>
     </div>
     <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${danger != null}">
-        <i class='bx bxs-error bx-tada'></i>
+        <i class="bx bxs-error bx-tada"></i>
         <span th:text="${danger}"></span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="cerrar"></button>
     </div>
+
+
 
 
 
@@ -147,7 +150,7 @@
             <div sec:authorize="${hasRole('ADMIN') or hasRole('USER')}" class="col col-2 p-0 d-none d-md-block"
                 id="sidebar">
 
-                <div class="d-flex gap-0 h-100" id="sidebar-content">
+                <div class="d-flex gap-0 h-100" id="sidebar-content" >
                     <div class="sidebar-container bg-dark py-5 ps-5">
                         <ul class="navbar-nav gap-5">
                             <li class="nav-item">
@@ -226,25 +229,25 @@
 
 
     <!--JQuery-->
-    <script src="https://code.jquery.com/jquery-3.6.1.js"
-        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
 
-    <!--JQuery UI JS-->
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<!--JQuery UI JS-->
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
-    <!-- JQuery Mask -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+<!-- JQuery Mask -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 
-    <!-- Sweet Alert 2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Sweet Alert 2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Datatables JS -->
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<!-- Datatables JS -->
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
-    <!--bootstrap 5.0.2 JS CDN-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+<!--bootstrap 5.0.2 JS CDN-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
 
 
 
