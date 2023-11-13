@@ -25,7 +25,7 @@ public class PermisoServiceImpl implements IPermisoService {
 
     @Override
     public List<Permiso> buscarPor(String criterio) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'buscarPor'");
     }
 
@@ -38,7 +38,7 @@ public class PermisoServiceImpl implements IPermisoService {
 
     @Override
     public void guardar(Permiso permiso) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'guardar'");
     }
     

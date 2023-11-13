@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import com.analistas.nexus.model.entities.Producto;
 import com.analistas.nexus.model.service.ICategoriaService;
 import com.analistas.nexus.model.service.IProductoService;
 
@@ -42,11 +44,20 @@ public class HomeControler {
         return "conocenos";
     }
 
-    @GetMapping("/detalleProducto")
-    public String detalleProducto(Model model) {
+    @GetMapping("/detalleProducto/{id}")
+    //public String detalleProducto(Model model) {
+    public String detalleProducto(@PathVariable("id") Long id, Integer cantidad, Model model) {
 
-        model.addAttribute("titulo", "Nexus Informatica");
+        //model.addAttribute("titulo", "Nexus Informatica");
+
+        //Detalle Productos//
+        model.addAttribute("titulo", "Descripcion del Producto");
+		Producto producto = productoService.buscarPorId(id);
+		model.addAttribute("producto", producto);
 
         return "detalleProducto";
     }
+
+
+
 }
