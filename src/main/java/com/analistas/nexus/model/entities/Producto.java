@@ -151,7 +151,5 @@ public class Producto {
     public void setCodigoBarras(String codigoBarras) {
         this.codigoBarras = codigoBarras;
     }
-
-    
     
 }

@@ -107,7 +107,7 @@
                     <div class="precio-producto">
                         <span th:text=" 'Precio: $'+ ${producto.precio} "></span>
                     </div>
-                    
+
                     <div class="text-success fw-bold">
                         <i class="bi bi-rocket-takeoff-fill"></i>
                         <span>Envío gratis</span>
@@ -118,6 +118,18 @@
                         </a>
                     </div>
                     <hr>
+                    <li class="list-group-item">
+                        <h6>
+                            Cantidad: <input type="number" id="cant" name="cant" autocomplete="off" min="1" max="10"
+                                value="1">
+
+                            <a href="#" class="btn btn-primary text-center">
+                                <i class="bi bi-cart-check"></i>
+                                Agregar
+                            </a>
+                        </h6>
+                    </li>
+
                     <!--<div>
                         Carecterísticas:
                         <ul>
