@@ -179,4 +179,7 @@ public class Venta {
     public void addLinea(LineaVenta linea) {
         lineas.add(linea);
     }
+
+    public static void setTotal(double calcularTotal) {
+    }
 }
