@@ -12,6 +12,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     
     Usuario findByEmail(String email);
 
+    public Usuario findByNombre(String nombre);
+
     @Query("select u from Usuario u Where u.nombre like %:criterio% or u.email like %:criterio% and u.activo = true")
     List<Usuario> buscarPor(@Param("criterio") String criterio );
 

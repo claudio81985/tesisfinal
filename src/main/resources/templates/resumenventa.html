@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${titulo}"></title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div layout:fragment="contenido">
+
+        <!-- Page Content -->
+        <div class="container">
+            <!-- Page Heading/Breadcrumbs -->
+            <h1 class="mt-4 mb-3">
+                Resumen <small>de su Compra</small>
+            </h1>
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}">Principal</a></li>
+                <li class="breadcrumb-item active">Resumen Venta</li>
+            </ol>
+
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    DATOS CLIENTE
+                                </h5>
+                                <h6 th:text=" 'Cliente:  '+  ${usuario.nombre}"> </h6>
+                                <!--<h6 th:text="'Dirección: '+ ${usuario.domicilio}"></h6>-->
+                                <h6 th:text="'Correo: '+ ${usuario.email}"></h6>
+                                <h6 th:text="'Fecha: '+ ${#temporals.format(venta.fechaHora,'dd-MM-yyyy HH:mm')}"></h6>
+
+                                <h5 class="card-title">
+                                    PRODUCTOS
+                                </h5>
+                                <!-- <div class="alert alert-light" role="alert"> -->
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Precio Unitario</th>
+                                            <th scope="col">Cantidad</th>
+                                            <!--<th scope="col">Total</th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="LineaVenta:${carrito}">
+                                            <td th:text="${LineaVenta.producto.descripcion}"></td>
+                                            <td th:text="'$'+${LineaVenta.precioActual} "></td>
+                                            <td th:text="${LineaVenta.cantidad}"></td>
+                                            <!--<td th:text=" '$'+${LineaVenta.calcularSubTotal}"></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- </div> -->
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <h2 class="card-title">Total Venta</h2>
+
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h5 th:text="'Total: $'+${venta.total}"> </h5>
+                                </li>
+                                <a th:href="@{guardarVenta}" class="btn btn-dark">Generar Pago</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.container -->
+    </div>    
+
+    <!--bootstrap 5.0.2 JS CDN-->
+    <script th:fragment="js"></script>
+</body>
+
+</html>

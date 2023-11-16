@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -44,6 +45,10 @@ public class LineaVenta {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
     private Producto producto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_venta")
+    private Venta venta;
 
     public Long getId() {
         return id;
@@ -83,4 +88,10 @@ public class LineaVenta {
 
     }
 
+    public Venta getVenta() {
+		return venta;
+	}
+	public void setVenta(Venta venta) {
+		this.venta = venta;
+	}
 }

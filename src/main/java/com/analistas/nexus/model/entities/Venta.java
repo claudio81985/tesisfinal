@@ -30,6 +30,8 @@ public class Venta {
 
     private int nroFactura;
 
+    private double total;
+
     @NotNull(message = "La fecha es requerida")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm z")
     @Column(name = "fec_hor")
@@ -44,6 +46,10 @@ public class Venta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_venta")
@@ -180,6 +186,19 @@ public class Venta {
         lineas.add(linea);
     }
 
-    public static void setTotal(double calcularTotal) {
+    public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+    public Cliente getCliente() {
+        return cliente;
+    }   
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

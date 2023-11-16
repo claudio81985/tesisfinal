@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${titulo}"></title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+</head>
+<body>
+    <div layout:fragment="contenido">
+        <!-- <h2 th:text="${titulo}"></h2> -->
+
+        <!-- Page Content -->
+        <div class="container">
+
+            <h1 class="mt-4 mb-3">
+                Mis <small>Productos Comprados</small>
+            </h1>
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/home}">Principal</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/getCompras}">Compras</a></li>
+                <li class="breadcrumb-item active">Mis Compras</li>
+            </ol>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="LineaVenta:${detalles}">
+                                        <td th:text="${LineaVenta.cantidad}"></td>
+                                        <td th:text="${LineaVenta.producto.descripcion}"></td>
+                                        <td th:text="${LineaVenta.precioActual}"></td>
+                                        <td th:text="${LineaVenta.calcularSubTotal}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- Scripts -->
+    <script th:fragment="js"></script>
+</body>
+
+</html>
