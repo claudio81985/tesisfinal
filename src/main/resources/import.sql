@@ -7,6 +7,8 @@ INSERT INTO `nexus_db`.`permisos` (`id`, `nombre`) VALUES ('3', 'ROLE_CLIENTE');
 /* Usuarios - en las pruebas todas las claves son 'usuario' */
 INSERT INTO `nexus_db`.`usuarios` (`activo`, `clave`,`email`,`nombre`,`id_permiso`) VALUES ('1', '$2a$10$nmsnELze.Ca7dMnsbfGIuuczJlKMAk9SGCkgDczmosj91zCAMsFoO', 'cmarangoni8@gmail.com', 'claudio', '2');
 INSERT INTO `nexus_db`.`usuarios` (`activo`, `clave`, `email`, `nombre`, `id_permiso`) VALUES ('1', '$2a$10$nmsnELze.Ca7dMnsbfGIuuczJlKMAk9SGCkgDczmosj91zCAMsFoO', 'cmarangoni8@gmail.com', 'alan', '1');
+INSERT INTO `nexus_db`.`usuarios` (`activo`, `clave`, `email`, `nombre`, `id_permiso`) VALUES ('1', '$2a$10$nmsnELze.Ca7dMnsbfGIuuczJlKMAk9SGCkgDczmosj91zCAMsFoO', 'cmarangoni8@gmail.com', 'alexis', '3');
+
 
 /*Cargar Categoria*/
 INSERT INTO `nexus_db`.`categorias` (`nombre`) VALUES ('Almacenamiento'); 

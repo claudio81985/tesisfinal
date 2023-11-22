@@ -258,5 +258,4 @@ public class HomeControler {
 		return "detallecompra";
 	}
 
-
 }
