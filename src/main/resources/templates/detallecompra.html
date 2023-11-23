@@ -40,7 +40,7 @@
                                         <th scope="col">Cantidad</th>
                                         <th scope="col">Producto</th>
                                         <th scope="col">Precio Unitario</th>
-                                        <!--<th scope="col">Total</th>-->
+                                        <th scope="col">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,7 +48,7 @@
                                         <td th:text="${LineaVenta.cantidad}"></td>
                                         <td th:text="${LineaVenta.producto.descripcion}"></td>
                                         <td th:text="${LineaVenta.precioActual}"></td>
-                                        <!--<td th:text="${LineaVenta.calcularSubTotal}"></td>-->
+                                        <td th:text="'$'+${LineaVenta.calcularSubtotal}"></td>
                                     </tr>
                                 </tbody>
                             </table>

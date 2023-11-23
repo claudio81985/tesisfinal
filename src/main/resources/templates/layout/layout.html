@@ -68,6 +68,14 @@
                     <li class="nav-item"><a class="nav-link link-light" href="#">Productos</a></li-->
                     <li class="nav-item"><a class="nav-link link-light" th:href="@{/conocenos}">Conocenos</a></li>
                     <li class="nav-item"><a class="nav-link link-light" th:href="@{/contacto}">Contactanos</a></li>
+                    <th:block sec:authorize="hasAnyRole('CLIENTE') or hasRole('ADMIN')">
+                        <li class="nav-item">
+                        <li class="nav-item"><a class="nav-link link-light" th:href="@{/getCarrito}">Carrito</a></li>
+                        <!--<i class='bx bxs-truck'></i>-->
+
+                        <li class="nav-item"><a class="nav-link link-light" th:href="@{/getCompras}">Mis Compras</a></li>
+                        <!--<i class='bx bxs-truck'></i>-->
+                    </th:block>
                 </ul>
 
                 <ul class="navbar-nav ms-auto">
@@ -226,7 +234,7 @@
             <div class="d-flex fixed-bottom bg-primary justify-content-center">
                 <ul class="navbar-nav flex-row align-items-center gap-5">
                     <li class="nav-item" th:title="Carrito">
-                        <a th:href="@{/carrito}" class="nav-link link-light">
+                        <a th:href="@{/getCarrito}" class="nav-link link-light">
                             <i class='bx bxs-cart lead'></i> </a>
                     </li>
                     <li class="nav-item" th:title="Compras">

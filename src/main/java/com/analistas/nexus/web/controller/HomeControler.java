@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 //import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -151,7 +152,7 @@ public class HomeControler {
         log.info("Producto Stock: {}", producto.getStock());
 
         // Calcular total de la venta
-        calcularTotal = lineaVenta.stream().mapToDouble(lineas -> lineas.calcularSubtotal()).sum();
+		calcularTotal = lineaVenta.stream().mapToDouble(lineas -> lineas.calcularSubtotal()).sum();
 
         venta.setTotal(calcularTotal);
         model.addAttribute("carrito", lineaVenta);
@@ -160,6 +161,19 @@ public class HomeControler {
         return "carrito";
     }
 
+    // Ver productos actual en carrito
+	@GetMapping("/getCarrito")
+	@Secured({ "ROLE_ADMIN", "ROLE_CLIENTE" })
+	public String getCarrito(Model model, HttpSession session) {
+		model.addAttribute("titulo", "Carrito de Compras");
+		model.addAttribute("carrito", lineaVenta);
+		model.addAttribute("venta", venta);
+
+		// sesion
+		model.addAttribute("sesion", session.getAttribute("idusuario"));
+		return "/carrito";
+	}
+    
     // Eliminar un producto del carrito
 	@GetMapping("/delete/carrito/{id}")
 	//@Secured({ "ROLE_ADMIN", "ROLE_CLIENTE" })
